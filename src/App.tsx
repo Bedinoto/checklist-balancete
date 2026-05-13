@@ -24,7 +24,8 @@ import {
   MoreVertical,
   PlusCircle,
   FileText,
-  Info
+  Info,
+  RotateCcw
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CATEGORIES, INITIAL_CHECKLIST } from './constants';
@@ -38,6 +39,7 @@ const IconMap: Record<string, any> = {
   Scale,
   TrendingUp,
   ShieldCheck,
+  BarChart3,
 };
 
 export default function App() {
@@ -93,6 +95,12 @@ export default function App() {
       return matchesSearch && matchesCategory;
     });
   }, [items, searchTerm, activeCategory]);
+
+  const resetChecklist = () => {
+    if (confirm('Deseja resetar o checklist para os itens padrão? Isso irá apagar suas marcações atuais.')) {
+      setItems(INITIAL_CHECKLIST);
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -178,7 +186,14 @@ export default function App() {
             </nav>
           </div>
           
-          <div className="mt-auto p-6 border-t border-slate-100">
+          <div className="mt-auto p-6 border-t border-slate-100 space-y-3">
+            <button 
+              onClick={resetChecklist}
+              className="w-full flex items-center justify-center gap-2 px-4 py-2 text-slate-500 hover:text-slate-800 hover:bg-slate-50 rounded-lg text-xs font-medium transition-all"
+            >
+              <RotateCcw size={14} />
+              Resetar para Padrão
+            </button>
             <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-sm font-medium transition-all shadow-md">
               <PlusCircle size={18} />
               Adicionar Ponto Custom

@@ -1,175 +1,102 @@
 import { ChecklistItem, Category } from './types';
 
 export const CATEGORIES: Category[] = [
-  { id: 'assets_curr', name: 'Ativo Circulante', iconName: 'Wallet' },
-  { id: 'assets_non_curr', name: 'Ativo Não Circulante', iconName: 'Building2' },
-  { id: 'liabilities', name: 'Passivo', iconName: 'CreditCard' },
-  { id: 'equity', name: 'Patrimônio Líquido', iconName: 'Scale' },
-  { id: 'results', name: 'Resultados (DRE)', iconName: 'TrendingUp' },
-  { id: 'compliance', name: 'Conformidade e Tributos', iconName: 'ShieldCheck' },
+  { id: 'cash', name: '1. Caixa e Bancos', iconName: 'Wallet' },
+  { id: 'receivables', name: '2. Contas a Receber', iconName: 'TrendingUp' },
+  { id: 'payables', name: '3. Contas a Pagar', iconName: 'CreditCard' },
+  { id: 'inventory', name: '4. Estoque', iconName: 'Building2' },
+  { id: 'fixed_assets', name: '5. Ativo Imobilizado', iconName: 'Building2' },
+  { id: 'loans', name: '6. Empréstimos', iconName: 'Scale' },
+  { id: 'payroll', name: '7. Folha de Pagamento', iconName: 'ShieldCheck' },
+  { id: 'taxes', name: '8. Tributos', iconName: 'ShieldCheck' },
+  { id: 'income', name: '9. Receitas', iconName: 'TrendingUp' },
+  { id: 'expenses', name: '10. Despesas e Custos', iconName: 'TrendingUp' },
+  { id: 'equity', name: '11. Patrimônio Líquido', iconName: 'Scale' },
+  { id: 'closing', name: '12. Testes de Fechamento', iconName: 'BarChart3' },
 ];
 
 export const INITIAL_CHECKLIST: ChecklistItem[] = [
-  // Ativo Circulante (Disponibilidades)
-  {
-    id: 'c1',
-    category: 'assets_curr',
-    task: 'Extratos e Conciliação Bancária',
-    description: 'Confrontar o saldo final com o extrato. Verificar se tarifas, rendimentos e transferências foram lançados.',
-    isCompleted: false,
-    notes: '',
-    severity: 'high'
-  },
-  {
-    id: 'c2',
-    category: 'assets_curr',
-    task: 'Pendenças: Cheques e Depósitos',
-    description: 'Investigar depósitos não identificados ou cheques emitidos há muito tempo e não compensados.',
-    isCompleted: false,
-    notes: '',
-    severity: 'medium'
-  },
-  {
-    id: 'c3',
-    category: 'assets_curr',
-    task: 'Aplicações Financeiras',
-    description: 'Validar se os rendimentos do mês foram apropriados e se o saldo bate com o informe da corretora/banco.',
-    isCompleted: false,
-    notes: '',
-    severity: 'medium'
-  },
-  {
-    id: 'c4',
-    category: 'assets_curr',
-    task: 'Contas a Receber (Razão vs Balancete)',
-    description: 'O somatório do relatório de clientes deve ser exatamente igual ao saldo da conta "Clientes" no balancete.',
-    isCompleted: false,
-    notes: '',
-    severity: 'high'
-  },
-  {
-    id: 'c5',
-    category: 'assets_curr',
-    task: 'Aging e PECLD (Créditos Duvidosos)',
-    description: 'Identificar faturas vencidas há muito tempo e avaliar necessidade de provisão para devedores duvidosos.',
-    isCompleted: false,
-    notes: '',
-    severity: 'medium'
-  },
-  {
-    id: 'c6',
-    category: 'assets_curr',
-    task: 'Testes de Baixas (Pix/Cartão)',
-    description: 'Testar se os valores recebidos via Pix ou cartão foram devidamente baixados no financeiro e contábil.',
-    isCompleted: false,
-    notes: '',
-    severity: 'high'
-  },
-  {
-    id: 'c7',
-    category: 'assets_curr',
-    task: 'Estoques: Inventário e Custos',
-    description: 'Comparar contagem física com saldo contábil. Validar se o CPV/CMV foi baixado sem deixar saldos negativos.',
-    isCompleted: false,
-    notes: '',
-    severity: 'high'
-  },
-  {
-    id: 'c8',
-    category: 'assets_curr',
-    task: 'Obsolescência de Estoque',
-    description: 'Checar se existem itens parados ou danificados que precisam de ajuste de valor ou provisão.',
-    isCompleted: false,
-    notes: '',
-    severity: 'low'
-  },
-  
-  // Ativo Não Circulante
-  {
-    id: 'anc1',
-    category: 'assets_non_curr',
-    task: 'Imobilizado: Aquisições e Baixas',
-    description: 'Verificar se novas compras foram ativadas e se itens vendidos/descartados foram baixados corretamente.',
-    isCompleted: false,
-    notes: '',
-    severity: 'medium'
-  },
-  {
-    id: 'anc2',
-    category: 'assets_non_curr',
-    task: 'Depreciação Mensal',
-    description: 'Testar se a despesa de depreciação foi lançada conforme a vida útil econômica dos bens.',
-    isCompleted: false,
-    notes: '',
-    severity: 'medium'
-  },
+  // 1. Caixa e Bancos
+  { id: 'cb1', category: 'cash', task: 'Saldo do Caixa Físico', description: 'Conferir saldo do caixa físico com a contagem real.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'cb2', category: 'cash', task: 'Conciliação Bancária', description: 'Conciliar extratos bancários com o razão contábil.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'cb3', category: 'cash', task: 'Cheques Pendentes', description: 'Verificar cheques pendentes de compensação.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'cb4', category: 'cash', task: 'Tarifas e Juros', description: 'Conferir tarifas, juros e IOF lançados no período.', isCompleted: false, notes: '', severity: 'low' },
+  { id: 'cb5', category: 'cash', task: 'Aplicações Financeiras', description: 'Validar saldo e rendimentos das aplicações financeiras.', isCompleted: false, notes: '', severity: 'medium' },
 
-  // Passivo
-  {
-    id: 'p1',
-    category: 'liabilities',
-    task: 'Fornecedores e Notas de Entrada',
-    description: 'Validar se todas as notas de entrada foram registradas e se os pagamentos baixaram as obrigações corretas.',
-    isCompleted: false,
-    notes: '',
-    severity: 'high'
-  },
-  {
-    id: 'p2',
-    category: 'liabilities',
-    task: 'Empréstimos: Principal vs Juros',
-    description: 'Conferir se as parcelas foram segregadas entre amortização do principal e despesas de juros.',
-    isCompleted: false,
-    notes: '',
-    severity: 'high'
-  },
-  {
-    id: 'p3',
-    category: 'liabilities',
-    task: 'Folha e Encargos (FGTS/INSS)',
-    description: 'Cruzar o resumo da folha com os saldos de Salários a Pagar, FGTS e INSS no balancete.',
-    isCompleted: false,
-    notes: '',
-    severity: 'high'
-  },
+  // 2. Contas a Receber
+  { id: 'cr1', category: 'receivables', task: 'Saldo de Clientes', description: 'Conferir saldo total de clientes em aberto.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'cr2', category: 'receivables', task: 'Títulos Vencidos', description: 'Validar títulos vencidos e aging da carteira.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'cr3', category: 'receivables', task: 'Provisão PECLD', description: 'Conferir provisão para inadimplência (devedores duvidosos).', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'cr4', category: 'receivables', task: 'Financeiro x Contabilidade', description: 'Comparar relatórios financeiros com a contabilidade.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'cr5', category: 'receivables', task: 'Adiantamentos de Clientes', description: 'Revisar saldos de adiantamentos de clientes.', isCompleted: false, notes: '', severity: 'low' },
 
-  // Patrimônio Líquido
-  {
-    id: 'pl1',
-    category: 'equity',
-    task: 'Capital Social vs Contrato',
-    description: 'Conferir se o saldo coincide com o Contrato Social ou Estatuto mais recente da empresa.',
-    isCompleted: false,
-    notes: '',
-    severity: 'low'
-  },
-  {
-    id: 'pl2',
-    category: 'equity',
-    task: 'Lucros/Prejuízos e Transferências',
-    description: 'Validar se o resultado do exercício anterior foi devidamente transferido para as contas de reserva ou PL.',
-    isCompleted: false,
-    notes: '',
-    severity: 'medium'
-  },
+  // 3. Contas a Pagar
+  { id: 'cp1', category: 'payables', task: 'Fornecedores em Aberto', description: 'Conferir saldo de fornecedores no balancete.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'cp2', category: 'payables', task: 'Lançamentos Duplicados', description: 'Validar possíveis duplicidades de lançamento.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'cp3', category: 'payables', task: 'Impostos e Retenções', description: 'Conferir impostos retidos na fonte em notas de serviço.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'cp4', category: 'payables', task: 'Adiantamentos Fornecedores', description: 'Revisar adiantamentos feitos a fornecedores.', isCompleted: false, notes: '', severity: 'low' },
+  { id: 'cp5', category: 'payables', task: 'Vencimentos Futuros', description: 'Validar fluxo de vencimentos futuros.', isCompleted: false, notes: '', severity: 'low' },
 
-  // Resultados e Conformidade
-  {
-    id: 'r1',
-    category: 'results',
-    task: 'Cruzamento Faturamento vs Impostos',
-    description: 'Conciliar as guias de impostos (DAS, ICMS, PIS/COFINS, ISS) com o faturamento do período.',
-    isCompleted: false,
-    notes: '',
-    severity: 'high'
-  },
-  {
-    id: 't1',
-    category: 'compliance',
-    task: 'Obrigações Acessórias (SPED/DCTF)',
-    description: 'Verificar se o envio das declarações obrigatórias foi realizado dentro do prazo do fechamento.',
-    isCompleted: false,
-    notes: '',
-    severity: 'medium'
-  },
+  // 4. Estoque
+  { id: 'st1', category: 'inventory', task: 'Saldo Contábil x Sistema', description: 'Conferir saldo contábil com o relatório do sistema.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'st2', category: 'inventory', task: 'Inventário Físico', description: 'Validar inventário físico contra o sistema.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'st3', category: 'inventory', task: 'Custo Médio', description: 'Revisar custo médio e valorização dos produtos.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'st4', category: 'inventory', task: 'Mercadorias em Trânsito', description: 'Conferir mercadorias faturadas mas não recebidas.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'st5', category: 'inventory', task: 'Perdas e Ajustes', description: 'Verificar perdas, quebras e ajustes de inventário.', isCompleted: false, notes: '', severity: 'low' },
+
+  // 5. Ativo Imobilizado
+  { id: 'fa1', category: 'fixed_assets', task: 'Aquisição de Bens', description: 'Conferir novas aquisições de bens no período.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'fa2', category: 'fixed_assets', task: 'Cálculo de Depreciação', description: 'Validar o cálculo mensal da depreciação.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'fa3', category: 'fixed_assets', task: 'Baixas e Vendas', description: 'Revisar baixas e vendas de ativos imobilizados.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'fa4', category: 'fixed_assets', task: 'Depreciação Acumulada', description: 'Conferir saldo acumulado da depreciação.', isCompleted: false, notes: '', severity: 'low' },
+
+  // 6. Empréstimos e Financiamentos
+  { id: 'ln1', category: 'loans', task: 'Contratos Bancários', description: 'Conferir saldos com os contratos e extratos bancários.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'ln2', category: 'loans', task: 'Juros Apropriados', description: 'Validar a apropriação dos juros mensais.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'ln3', category: 'loans', task: 'Parcelas a Vencer', description: 'Conferir parcelas pagas e saldo a vencer.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'ln4', category: 'loans', task: 'Curto x Longo Prazo', description: 'Revisar a classificação entre passivo circulante e não circulante.', isCompleted: false, notes: '', severity: 'medium' },
+
+  // 7. Folha de Pagamento
+  { id: 'pr1', category: 'payroll', task: 'Salários Contabilizados', description: 'Conferir salários e provisões com a folha de pagamento.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'pr2', category: 'payroll', task: 'INSS e FGTS', description: 'Validar encargos de INSS, FGTS e retenções.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'pr3', category: 'payroll', task: 'Férias e 13º Salário', description: 'Conferir provisões de férias e 13º salário.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'pr4', category: 'payroll', task: 'Encargos Sociais', description: 'Revisar o lançamento de todos os encargos sociais.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'pr5', category: 'payroll', task: 'Pró-labore', description: 'Validar o pagamento e encargos do pró-labore.', isCompleted: false, notes: '', severity: 'low' },
+
+  // 8. Tributos
+  { id: 'tx1', category: 'taxes', task: 'Apuração de Impostos', description: 'Conferir memória de cálculo da apuração de impostos.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'tx2', category: 'taxes', task: 'Impostos a Recolher', description: 'Validar saldos de impostos a pagar no balancete.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'tx3', category: 'taxes', task: 'Créditos Tributários', description: 'Revisar saldos de impostos a recuperar/compensar.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'tx4', category: 'taxes', task: 'Parcelamentos Fiscais', description: 'Conferir parcelas de impostos parcelados.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'tx5', category: 'taxes', task: 'Retenções Federais/Mun.', description: 'Validar retenções sofridas e efetuadas.', isCompleted: false, notes: '', severity: 'medium' },
+
+  // 9. Receitas
+  { id: 'rv1', category: 'income', task: 'Faturamento Emitido', description: 'Conferir faturamento fiscal com o contábil.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'rv2', category: 'income', task: 'Competência das Receitas', description: 'Validar se as receitas estão no mês correto.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'rv3', category: 'income', task: 'Cancelamentos/Devoluções', description: 'Revisar notas canceladas e devoluções de venda.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'rv4', category: 'income', task: 'Integrações Fiscais', description: 'Conferir se a integração fiscal está correta.', isCompleted: false, notes: '', severity: 'medium' },
+
+  // 10. Despesas e Custos
+  { id: 'ex1', category: 'expenses', task: 'Documento Suporte', description: 'Revisar despesas lançadas sem documento idôneo.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'ex2', category: 'expenses', task: 'Rateios', description: 'Validar se os rateios de custos estão corretos.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'ex3', category: 'expenses', task: 'Despesas Antecipadas', description: 'Conferir apropriação de seguros e assinaturas.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'ex4', category: 'expenses', task: 'Competência', description: 'Identificar despesas pagas fora do mês de competência.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'ex5', category: 'expenses', task: 'Centros de Custo', description: 'Revisar a classificação por centros de custo.', isCompleted: false, notes: '', severity: 'low' },
+
+  // 11. Patrimônio Líquido
+  { id: 'eq1', category: 'equity', task: 'Capital Social', description: 'Conferir capital social com o contrato social.', isCompleted: false, notes: '', severity: 'low' },
+  { id: 'eq2', category: 'equity', task: 'Distribuição de Lucros', description: 'Validar se a distribuição seguiu as regras legais.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'eq3', category: 'equity', task: 'Reservas', description: 'Revisar reservas de lucros e legal.', isCompleted: false, notes: '', severity: 'low' },
+  { id: 'eq4', category: 'equity', task: 'Resultado Acumulado', description: 'Conferir o saldo de lucros/prejuízos acumulados.', isCompleted: false, notes: '', severity: 'medium' },
+
+  // 12. Testes Gerais
+  { id: 'gt1', category: 'closing', task: 'Débito = Crédito', description: 'Conferir se o balancete está fechado (D=C).', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'gt2', category: 'closing', task: 'Contas Negativas', description: 'Validar contas com saldo invertido indevido.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'gt3', category: 'closing', task: 'Sem Movimentação', description: 'Identificar contas que perderam movimentação.', isCompleted: false, notes: '', severity: 'low' },
+  { id: 'gt4', category: 'closing', task: 'Padrão Histórico', description: 'Revisar saldos que fogem muito do padrão histórico.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'gt5', category: 'closing', task: 'Comparativo Mês Anterior', description: 'Comparar balancete atual com o mês anterior.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'gt6', category: 'closing', task: 'Integrações', description: 'Conferir integração Fiscal/Financeiro/Estoque.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'gt7', category: 'closing', task: 'Plano de Contas', description: 'Validar a estrutura do plano de contas usado.', isCompleted: false, notes: '', severity: 'low' },
+  { id: 'gt8', category: 'closing', task: 'Lançamentos Manuais', description: 'Revisar lançamentos feitos fora dos módulos.', isCompleted: false, notes: '', severity: 'high' },
 ];
+
