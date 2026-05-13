@@ -45,7 +45,27 @@ const IconMap: Record<string, any> = {
 export default function App() {
   const [items, setItems] = useState<ChecklistItem[]>(() => {
     const saved = localStorage.getItem('audit_checklist');
-    return saved ? JSON.parse(saved) : INITIAL_CHECKLIST;
+    if (!saved) return INITIAL_CHECKLIST;
+    
+    try {
+      const parsed = JSON.parse(saved);
+      // Migration check: if the user has categories that no longer exist in our constants,
+      // it means the structure changed. We should sync them.
+      const validCategoryIds = new Set(CATEGORIES.map(c => c.id));
+      const hasOldStructure = parsed.some((item: any) => !validCategoryIds.has(item.category));
+      
+      if (hasOldStructure) {
+        // If structure changed significantly, we merge or reset.
+        // For simplicity and to fix the "zeros" issue immediately, we reset to INITIAL_CHECKLIST
+        // but we could also try to preserve notes if we wanted to be fancy.
+        console.warn("AuditCheck: Estrutura antiga detectada. Sincronizando com novo padrão.");
+        return INITIAL_CHECKLIST;
+      }
+      
+      return parsed;
+    } catch (e) {
+      return INITIAL_CHECKLIST;
+    }
   });
   
   const [searchTerm, setSearchTerm] = useState('');

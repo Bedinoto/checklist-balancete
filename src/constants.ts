@@ -11,8 +11,9 @@ export const CATEGORIES: Category[] = [
   { id: 'taxes', name: '8. Tributos', iconName: 'ShieldCheck' },
   { id: 'income', name: '9. Receitas', iconName: 'TrendingUp' },
   { id: 'expenses', name: '10. Despesas e Custos', iconName: 'TrendingUp' },
-  { id: 'equity', name: '11. Patrimônio Líquido', iconName: 'Scale' },
-  { id: 'closing', name: '12. Testes de Fechamento', iconName: 'BarChart3' },
+  { id: 'dre', name: '11. DRE / Resultado', iconName: 'BarChart3' },
+  { id: 'equity', name: '12. Patrimônio Líquido', iconName: 'Scale' },
+  { id: 'closing', name: '13. Testes de Fechamento', iconName: 'BarChart3' },
 ];
 
 export const INITIAL_CHECKLIST: ChecklistItem[] = [
@@ -83,20 +84,28 @@ export const INITIAL_CHECKLIST: ChecklistItem[] = [
   { id: 'ex4', category: 'expenses', task: 'Competência', description: 'Identificar despesas pagas fora do mês de competência.', isCompleted: false, notes: '', severity: 'high' },
   { id: 'ex5', category: 'expenses', task: 'Centros de Custo', description: 'Revisar a classificação por centros de custo.', isCompleted: false, notes: '', severity: 'low' },
 
-  // 11. Patrimônio Líquido
-  { id: 'eq1', category: 'equity', task: 'Capital Social', description: 'Conferir capital social com o contrato social.', isCompleted: false, notes: '', severity: 'low' },
+  // 11. DRE / Resultado
+  { id: 'dre1', category: 'dre', task: 'Margem Bruta por Unidade', description: 'Analisar a margem bruta e comparar com períodos anteriores.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'dre2', category: 'dre', task: 'EBITDA / Resultado Op.', description: 'Validar o resultado operacional líquido das despesas.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'dre3', category: 'dre', task: 'Resultado Financeiro Líquido', description: 'Verificar se o resultado financeiro líquido está coerente com as aplicações e empréstimos.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'dre4', category: 'dre', task: 'Provisão IRPJ e CSLL', description: 'Conferir se a provisão de impostos sobre o lucro está correta conforme o regime.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'dre5', category: 'dre', task: 'Indicadores de Liquidez', description: 'Calcular e revisar índices de liquidez corrente e seca.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'dre6', category: 'dre', task: 'Endividamento Total', description: 'Avaliar o grau de endividamento e comprometimento de caixa.', isCompleted: false, notes: '', severity: 'medium' },
+
+  // 12. Patrimônio Líquido
+  { id: 'eq1', category: 'equity', task: 'Capital Social vs Contrato', description: 'Conferir capital social com o contrato social.', isCompleted: false, notes: '', severity: 'low' },
   { id: 'eq2', category: 'equity', task: 'Distribuição de Lucros', description: 'Validar se a distribuição seguiu as regras legais.', isCompleted: false, notes: '', severity: 'medium' },
-  { id: 'eq3', category: 'equity', task: 'Reservas', description: 'Revisar reservas de lucros e legal.', isCompleted: false, notes: '', severity: 'low' },
+  { id: 'eq3', category: 'equity', task: 'Reservas de Lucro', description: 'Revisar reservas de lucros e legal.', isCompleted: false, notes: '', severity: 'low' },
   { id: 'eq4', category: 'equity', task: 'Resultado Acumulado', description: 'Conferir o saldo de lucros/prejuízos acumulados.', isCompleted: false, notes: '', severity: 'medium' },
 
-  // 12. Testes Gerais
+  // 13. Testes Gerais
   { id: 'gt1', category: 'closing', task: 'Débito = Crédito', description: 'Conferir se o balancete está fechado (D=C).', isCompleted: false, notes: '', severity: 'high' },
-  { id: 'gt2', category: 'closing', task: 'Contas Negativas', description: 'Validar contas com saldo invertido indevido.', isCompleted: false, notes: '', severity: 'high' },
-  { id: 'gt3', category: 'closing', task: 'Sem Movimentação', description: 'Identificar contas que perderam movimentação.', isCompleted: false, notes: '', severity: 'low' },
-  { id: 'gt4', category: 'closing', task: 'Padrão Histórico', description: 'Revisar saldos que fogem muito do padrão histórico.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'gt2', category: 'closing', task: 'Contas Negativas Indevidas', description: 'Validar contas com saldo invertido indevido (ex: Caixa credor).', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'gt3', category: 'closing', task: 'Contas sem Movimentação', description: 'Identificar contas que perderam movimentação injustificadamente.', isCompleted: false, notes: '', severity: 'low' },
+  { id: 'gt4', category: 'closing', task: 'Diferenças Fiscal x Contábil', description: 'Revisar saldos que fogem muito do padrão histórico ou divergem do fiscal.', isCompleted: false, notes: '', severity: 'high' },
   { id: 'gt5', category: 'closing', task: 'Comparativo Mês Anterior', description: 'Comparar balancete atual com o mês anterior.', isCompleted: false, notes: '', severity: 'medium' },
-  { id: 'gt6', category: 'closing', task: 'Integrações', description: 'Conferir integração Fiscal/Financeiro/Estoque.', isCompleted: false, notes: '', severity: 'high' },
-  { id: 'gt7', category: 'closing', task: 'Plano de Contas', description: 'Validar a estrutura do plano de contas usado.', isCompleted: false, notes: '', severity: 'low' },
-  { id: 'gt8', category: 'closing', task: 'Lançamentos Manuais', description: 'Revisar lançamentos feitos fora dos módulos.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'gt6', category: 'closing', task: 'Integrações (Fisc/Fin/Est)', description: 'Conferir integração Fiscal/Financeiro/Estoque.', isCompleted: false, notes: '', severity: 'high' },
+  { id: 'gt7', category: 'closing', task: 'Saldos em Moeda Estrangeira', description: 'Se aplicável, validar conversão de saldos em moeda estrangeira.', isCompleted: false, notes: '', severity: 'medium' },
+  { id: 'gt8', category: 'closing', task: 'Documentos de Suporte', description: 'Revisar lançamentos manuais e conferir suporte documental.', isCompleted: false, notes: '', severity: 'high' },
 ];
 
